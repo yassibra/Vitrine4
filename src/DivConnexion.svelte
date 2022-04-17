@@ -1,11 +1,20 @@
 <script>
 import {push, pop, replace} from "svelte-spa-router";
-
-const go_connexion = () => {
+let mdp = "test";
+let email ="test";
+const go_connexion = async () => {
+  const submit = await fetch("/api", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      mdp,
+    }),
+  });
   //push("/creercompte");
 }
 
 </script>
+<form on:submit|preventDefault={go_connexion}>
 <div class="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
   <section class="flex w-[30rem] flex-col space-y-10">
       <div class="text-center text-4xl font-medium">Connectez-vous</div>
@@ -13,7 +22,7 @@ const go_connexion = () => {
       <div
         class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500"
       >
-        <input
+        <input bind:value={email}
           type="text"
           placeholder="Email"
           class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
@@ -23,7 +32,7 @@ const go_connexion = () => {
       <div
         class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500"
       >
-        <input
+        <input bind:value={mdp}
           type="password"
           placeholder="Mot de passe"
           class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
@@ -52,3 +61,4 @@ const go_connexion = () => {
       </p>
     </section>
   </div>
+</form>
