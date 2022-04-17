@@ -77,9 +77,7 @@ const go_connexion = () => {
 
 </div>
 <div >
-
 </div>
-
 <style>
 svg{
   color: #FFFFFF
